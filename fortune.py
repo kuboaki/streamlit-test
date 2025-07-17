@@ -1,14 +1,31 @@
-import streamlit as st
+import streamlit as st # type: ignore
 
 st.title("今日の運勢占い")
 st.header("あなたの運勢を占います")
 
-st.success("今日の運勢は大吉です！")
-st.info("ラッキーカラーは青です。")
-st.warning("朝の通勤時は少し注意が必要かも")
+name = st.text_input("あなたの名前を教えてください",
+                        placeholder="例: 山田太郎",
+                        help = "2から20文字で入力してください。ニックネームでもOKです",
+                        max_chars=20)
+if name:
+    if name.lower() in ["先生", "teacher", "sensei"]:
+        st.balloons()
+        st.subheader(f"{name}さんの今日の総合運")
+        st.success("特大吉！いつもありがとうございます！")
+        st.info("きょうは特別な一日になるでしょう。")
+    elif "python" in name.lower():
+        st.subheader(f"{name}さんの今日の総合運")
+        st.success("大吉！Pythonのプログラミングがうまくいく日です。")
+        st.info("きょうはコードがスラスラ書ける日です！！")        
+    else:
+        st.subheader(f"{name}さんの今日の総合運")
+        st.success("大吉です！素晴らしい一日になるでしょう。")
 
-st.divider()
+        st.divider()
+        st.info(f"**{name}さんへのアドバイス:**")
+        st.write(f"きょうの{name}さんは、特に午後から運気が上昇します。")
+        st.write(f"{name}さんにとって大切な人との縁が深まる日です。")
+        st.write(f"ラッキカラー：青（{name}さんの運気をサポート）")
+else:
+    st.info("名前を入力して、個人占いを始めましょう。")
 
-st.subheader("今日のアドバイス")
-st.write("積極的に行動することで、良い結果が得られるでしょう。")
-st.write("特に午後2時から4時の間が最も運気が高まります")
